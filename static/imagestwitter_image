@@ -1,0 +1,19 @@
+digraph {
+	node [fillcolor=lightblue fontname=Arial shape=rectangle style=filled]
+	edge [fontname=Arial]
+	Start [label=Start]
+	AuthUser [label="Authenticate User"]
+	ReadDraft [label="Read Draft Tweet"]
+	ComposeTweet [label="Compose Tweet"]
+	ValidateTweet [label="Validate Tweet"]
+	PostTweet [label="Post Tweet"]
+	ShowTweet [label="Show Tweet"]
+	End [label=End]
+	Start -> AuthUser
+	AuthUser -> ReadDraft
+	ReadDraft -> ComposeTweet
+	ComposeTweet -> ValidateTweet
+	ValidateTweet -> PostTweet
+	PostTweet -> ShowTweet
+	ShowTweet -> End
+}

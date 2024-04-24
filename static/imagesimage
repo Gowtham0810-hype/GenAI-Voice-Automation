@@ -1,0 +1,25 @@
+digraph {
+	node [fillcolor=lightblue fontname=Arial shape=rectangle style=filled]
+	edge [fontname=Arial]
+	Start [label=Start]
+	EnterSource [label="Enter source station"]
+	EnterDestination [label="Enter destination station"]
+	EnterDate [label="Enter date of travel"]
+	CheckAvailability [label="Check availability of trains"]
+	DisplayTrains [label="Display available trains"]
+	SelectTrain [label="Select train"]
+	EnterPassengerDetails [label="Enter passenger details"]
+	ConfirmBooking [label="Confirm booking"]
+	PrintTicket [label="Print ticket"]
+	End [label=End]
+	Start -> EnterSource
+	EnterSource -> EnterDestination
+	EnterDestination -> EnterDate
+	EnterDate -> CheckAvailability
+	CheckAvailability -> DisplayTrains
+	DisplayTrains -> SelectTrain
+	SelectTrain -> EnterPassengerDetails
+	EnterPassengerDetails -> ConfirmBooking
+	ConfirmBooking -> PrintTicket
+	PrintTicket -> End
+}

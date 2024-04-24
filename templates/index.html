@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Dictation</title>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{url_for('static',filename='index.css')}}"
+  />
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="welcome-message">Voice Driven Automation Builder</h1>
+    <div class="content-box">
+      <h2 id="voiceDictation">Record</h2>
+      <button id="startBtn">Start</button>
+      <button id="stopBtn">Stop</button>
+      <div id="output"></div>
+      <div id="message"></div>
+    </div>
+
+    <button id="submitBtn">Generate</button>
+    <div class="loader"></div>
+    <div>
+      <a id="downloadLink" download="generated_image.png" href="#">
+        <img id="img" src="" width="600px" />
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function textTypeEffect(element, text, i = 0, speed = 10) {
+      if (i === 0) element.textContent = "";
+
+      element.textContent += text.charAt(i);
+
+      if (i === text.length - 1) {
+        return;
+      }
+
+      const newSpeed = speed - 0.5; // Decrease the speed
+      setTimeout(() => textTypeEffect(element, text, i + 1, newSpeed), speed);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const startBtn = document.getElementById("startBtn");
+      const stopBtn = document.getElementById("stopBtn");
+      const submitBtn = document.getElementById("submitBtn");
+      const outputDiv = document.getElementById("output");
+      const mess = document.getElementById("message");
+      let recognition;
+
+      startBtn.addEventListener("click", function () {
+        // Request microphone permission
+        navigator.mediaDevices
+          .getUserMedia({ audio: true })
+          .then(function (stream) {
+            // Start speech recognition
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+
+            recognition.onresult = function (event) {
+              const transcript = Array.from(event.results)
+                .map((result) => result[0].transcript)
+                .join("");
+              outputDiv.textContent = transcript;
+            };
+
+            recognition.onend = function () {
+              stream.getTracks().forEach((track) => track.stop());
+            };
+
+            recognition.start();
+          })
+          .catch(function (error) {
+            console.error("Error accessing microphone:", error);
+          });
+      });
+
+      stopBtn.addEventListener("click", function () {
+        if (recognition) {
+          recognition.stop();
+        }
+      });
+
+      submitBtn.addEventListener("click", function () {
+        const transcript = outputDiv.textContent.trim();
+        // Send data to backend
+        submitBtn.innerHTML="<div class='loader'></div>"
+        fetch("/handle_speech", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ transcript: transcript }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Response from server:", data);
+            // Handle response from server as needed
+            textTypeEffect(mess, data.transcript);
+            if (data.diagram_filename) {
+              console.log("yess");
+              let image = document.getElementById("img");
+              img.style.display = 'block';
+              img.src = data.diagram_filename;
+
+              // Set up download link
+              const downloadLink = document.getElementById("downloadLink");
+              downloadLink.setAttribute("href", data.diagram_filename);
+            } else {
+              console.log("naah");
+            }
+            document.querySelector(".loader").style.display = "none";
+            submitBtn.innerHTML="Generate"
+          })
+          .catch((error) => console.error("Error:", error));
+          
+      });
+    });
+  </script>
+</body>
+</html>
