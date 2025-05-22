@@ -35,3 +35,15 @@ A real-time, voice-controlled automation interface that uses the browser’s bui
 ├── style.css # Styling
 ├── script.js # Voice recognition + integration logic
 ├── README.md # Project documentation ```
+
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Gowtham0810-hype/voice-driven-automation-builder.git
+cd voice-driven-automation-builder
+
