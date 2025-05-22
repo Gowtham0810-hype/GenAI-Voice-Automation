@@ -30,9 +30,8 @@ A real-time, voice-controlled automation interface that uses the browser’s bui
 ---
 
 ## 📦 Project Structure
- ``` project-root/ ├── README.md ├── requirements.txt ├── src/ │ ├── main.py │ ├── utils.py │ └── config/ │ └── settings.py ├── data/ │ ├── raw/ │ └── processed/ └── tests/ └── test_main.py ```
- voice-driven-automation-builder/
- ├── index.html # UI for voice control
- ├── style.css # Styling
- ├── script.js # Voice recognition + integration logic
- ├── README.md # Project documentation
+'''voice-driven-automation-builder/
+├── index.html # UI for voice control
+├── style.css # Styling
+├── script.js # Voice recognition + integration logic
+├── README.md # Project documentation '''
