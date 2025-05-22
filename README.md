@@ -35,10 +35,7 @@ A real-time, voice-controlled automation interface that uses the browser’s bui
 ├── style.css # Styling
 ├── script.js # Voice recognition + integration logic
 ├── README.md # Project documentation ```
-
-
 ---
-
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
