@@ -35,7 +35,8 @@ voice-driven-automation-builder/
 ├── index.html # UI for voice control
 ├── style.css # Styling
 ├── script.js # Voice recognition + integration logic
-├── README.md # Project documentation ```
+├── README.md # Project documentation
+```
 ---
 ## 🚀 Getting Started
 
