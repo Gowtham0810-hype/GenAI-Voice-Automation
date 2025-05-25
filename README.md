@@ -30,7 +30,8 @@ A real-time, voice-controlled automation interface that uses the browser’s bui
 ---
 
 ## 📦 Project Structure
-```voice-driven-automation-builder/
+```bash
+voice-driven-automation-builder/
 ├── index.html # UI for voice control
 ├── style.css # Styling
 ├── script.js # Voice recognition + integration logic
