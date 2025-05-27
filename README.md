@@ -6,7 +6,7 @@ A real-time, voice-controlled automation interface that uses the browser’s bui
 
 ## 🔧 What is n8n?
 
-[n8n (pronounced "n-eight-n")](https://n8n.io/) is a powerful, extendable open-source workflow automation tool. Think of it as an open-source alternative to Zapier. It allows users to connect various services via APIs, build complex logic, and automate processes — all without writing much code.
+[n8n](https://n8n.io/) is a powerful, extendable open-source workflow automation tool. Think of it as an open-source alternative to Zapier. It allows users to connect various services via APIs, build complex logic, and automate processes — all without writing much code.
 
 ---
 
